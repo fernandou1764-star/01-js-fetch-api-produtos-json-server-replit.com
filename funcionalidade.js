@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 campoIdDoImovel.value = imovel.id;
                 document.getElementById('tipo').value = imovel.tipo;
                 document.getElementById('categoria').value = imovel.categoria;
-                document.getElementById('valor_aluguel').value = imovel.valor_aluguel;
+                document.getElementById('valor-aluguel').value = imovel.valor_aluguel;
                 botaoEnviar.textContent = 'Atualizar Imóvel';
                 window.scrollTo(0, 0);
             }
