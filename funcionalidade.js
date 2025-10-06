@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = campoIdDoImovel.value;
         const tipo = document.getElementById('tipo').value;
         const categoria = document.getElementById('categoria').value;
-        const valor_aluguel = parseFloat(document.getElementById('valor_aluguel').value);
+        const valor_aluguel = parseFloat(document.getElementById('valor-aluguel').value);
 
         const imovel = { tipo, categoria, valor_aluguel };
 
