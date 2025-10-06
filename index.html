@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD de Produtos</title>
+    <title>CRUD de Imóveis</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -12,36 +12,36 @@
         <h1>Controle de Estoque</h1>
 
         <div class="cartao">
-            <form id="formulario-de-produto">
-                <input type="hidden" id="produto-id">
+            <form id="formulario-de-imovel">
+                <input type="hidden" id="imovel-id">
 
                 <div class="grupo-formulario">
-                    <label for="nome">Nome do Produto:</label>
-                    <input type="text" id="nome" placeholder="Ex: Teclado Mecânico" required>
+                    <label for="tipo">Tipo do imovel:</label>
+                    <input type="text" id="tipo" placeholder="Digite o tipo do imóvel: " required>
                 </div>
 
                 <div class="grupo-formulario">
-                    <label for="quantidade">Quantidade:</label>
-                    <input type="number" id="quantidade" placeholder="Ex: 50" required>
+                    <label for="categoria">Categoria:</label>
+                    <input type="text" id="categoria" placeholder="Digite a catégoria do imóvel:" required>
                 </div>
 
                 <div class="grupo-formulario">
-                    <label for="preco">Preço (R$):</label>
-                    <input type="number" id="preco" step="0.01" placeholder="Ex: 250.50" required>
+                    <label for="valor-aluguel">Valor do aluguel (R$):</label>
+                    <input type="number" id="valor-aluguel" step="0.01" placeholder="Ex: 750.50" required>
                 </div>
                 
-                <button type="submit" id="botao-enviar">Adicionar Produto</button>
+                <button type="submit" id="botao-enviar">Adicionar Imóvel</button>
             </form>
         </div>
 
         <div class="cartao">
-            <h2>Lista de Produtos</h2>
+            <h2>Lista de Imóveis</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Quantidade</th>
-                        <th>Preço</th>
+                        <th>Tipo</th>
+                        <th>Categoria</th>
+                        <th>Valor do Aluguel</th>
                         <th>Ações</th>
                     </tr>
                 </thead>

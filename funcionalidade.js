@@ -1,38 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const replit = 'https://6a0f147d-da74-4ae1-b8ca-7a7828542734-00-h6nwxazwm4tw.worf.replit.dev/'; // URL do projeto no Replit.com.
-    const url = replit + "produtos";
+    const replit = 'https://9de06e98-817d-455b-bdd2-c7b96eaf32a9-00-b2r6bwmmdprw.riker.replit.dev/'; // URL do projeto no Replit.com.
+    const url = replit + "imoveis";
 
-    const formularioDeProduto = document.getElementById('formulario-de-produto');
-    const campoIdDoProduto = document.getElementById('produto-id');
+    const formularioDeImovel = document.getElementById('formulario-de-imovel');
+    const campoIdDoImovel = document.getElementById('imovel-id');
     const botaoEnviar = document.getElementById('botao-enviar');
-    const listaDeProdutos = document.getElementById('lista-de-produtos');
+    const listaDeImoveis = document.getElementById('lista-de-Imoveis');
 
-    let produtos = [];
+    let imoveis = [];
 
     //GET:
-    const buscarProdutos = async () => {
+    const buscarImoveis = async () => {
         await fetch(url)
             .then(response => response.json())
             .then(json => {
-                produtos = json;
+                imoveis = json;
                 apresentarTabela();
             })
             .catch(error => {
                 console.error(error);
-                listaDeProdutos.innerHTML = `<tr><td colspan="4">Erro ao carregar produtos.</td></tr>`;
+                listaDeimoveis.innerHTML = `<tr><td colspan="4">Erro ao carregar imoveis.</td></tr>`;
             })
     };
 
     //POST:
-    const enviarProduto = async (produto) => {
+    const enviarImovel = async (imovel) => {
         await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-            body: JSON.stringify(produto)
+            body: JSON.stringify(imovel)
         })
             .then(response => response.json())
-            .then(() => buscarProdutos())
-            .catch(() => alert("Erro ao enviar produto!"));
+            .then(() => buscarImoveis())
+            .catch(() => alert("Erro ao enviar imóvel!"));
     };
 
     //UPDATE:
@@ -48,32 +48,32 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     //DELETE    :
-    const excluirProduto = async (id) => {
+    const excluirImovel = async (id) => {
         await fetch(`${url}/${id}`, {
             method: 'DELETE'
         })
             .then(response => response.json())
-            .then(() => buscarProdutos())
-            .catch(() => alert("Erro ao excluir produto!"));
+            .then(() => buscarImoveis())
+            .catch(() => alert("Erro ao excluir imóvel!"));
     };
 
     const apresentarTabela = () => {
-        listaDeProdutos.innerHTML = '';
+        listaDeImoveis.innerHTML = '';
 
-        if (produtos.length === 0) {
-            listaDeProdutos.innerHTML = '<tr><td colspan="4">Nenhum produto cadastrado.</td></tr>';
+        if (imoveis.length === 0) {
+            listaDeImoveis.innerHTML = '<tr><td colspan="4">Nenhum imóvel cadastrado.</td></tr>';
             return;
         }
 
-        produtos.forEach(produto => {
+        imoveis.forEach(imovel => {
             const linha = document.createElement('tr');
             linha.innerHTML = `
-              <td>${produto.nome}</td>
-              <td>${produto.quantidade}</td>
-              <td>${formatarMoeda(produto.preco)}</td>
+              <td>${imovel.tipo}</td>
+              <td>${imovel.categoria}</td>
+              <td>${formatarMoeda(imovel.valor_aluguel)}</td>
               <td>
-                <button class="botao-de-acao botao-editar" data-id="${produto.id}">✏️ Editar</button>
-                <button class="botao-de-acao botao-excluir" data-id="${produto.id}">🗑️ Excluir</button>
+                <button class="botao-de-acao botao-editar" data-id="${imovel.id}">✏️ Editar</button>
+                <button class="botao-de-acao botao-excluir" data-id="${imovel.id}">🗑️ Excluir</button>
               </td>`;
             listaDeProdutos.appendChild(linha);
         });
@@ -83,55 +83,55 @@ document.addEventListener('DOMContentLoaded', () => {
         return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     };
 
-    formularioDeProduto.addEventListener('submit', async event => {
+    formularioDeImovel.addEventListener('submit', async event => {
         event.preventDefault();
 
-        const id = campoIdDoProduto.value;
-        const nome = document.getElementById('nome').value;
-        const quantidade = parseInt(document.getElementById('quantidade').value);
-        const preco = parseFloat(document.getElementById('preco').value);
+        const id = campoIdDoImovel.value;
+        const tipo = document.getElementById('tipo').value;
+        const categoria = parseInt(document.getElementById('categoria').value);
+        const valor_aluguel = parseFloat(document.getElementById('valor_aluguel').value);
 
-        const produto = { nome, quantidade, preco };
+        const imovel = { tipo, categoria, valor_aluguel };
 
         if (id)
-            atualizarProduto(id, produto);
+            atualizarImovel(id, imovel);
         else
-            enviarProduto(produto);
+            enviarImovel(imovel);
 
         limparFormulario();
-        buscarProdutos();
+        buscarImoveis();
     });
 
-    listaDeProdutos.addEventListener('click', async event => {
+    listaDeImoveis.addEventListener('click', async event => {
         const alvo = event.target;
         const id = alvo.dataset.id;
 
         if (alvo.classList.contains('botao-editar')) {
-            const produto = produtos.find(p => p.id === id);
+            const imovel = imoveis.find(p => p.id === id);
 
-            if (produto) {
-                campoIdDoProduto.value = produto.id;
-                document.getElementById('nome').value = produto.nome;
-                document.getElementById('quantidade').value = produto.quantidade;
-                document.getElementById('preco').value = produto.preco;
-                botaoEnviar.textContent = 'Atualizar Produto';
+            if (imovel) {
+                campoIdDoImovel.value = imovel.id;
+                document.getElementById('tipo').value = imovel.tipo;
+                document.getElementById('categoria').value = imovel.categoria;
+                document.getElementById('valor_aluguel').value = imovel.valor_aluguel;
+                botaoEnviar.textContent = 'Atualizar Imóvel';
                 window.scrollTo(0, 0);
             }
         } else if (alvo.classList.contains('botao-excluir')) {
-            if (confirm('Tem certeza que deseja excluir este produto?')) {
-                excluirProduto(id);
-                buscarProdutos();
+            if (confirm('Tem certeza que deseja excluir este imóvel?')) {
+                excluirImovel(id);
+                buscarImoveis();
             }
         }
     });
 
     const limparFormulario = () => {
-        formularioDeProduto.reset();
-        campoIdDoProduto.value = '';
-        botaoEnviar.textContent = 'Adicionar Produto';
+        formularioDeImovel.reset();
+        campoIdDoImovel.value = '';
+        botaoEnviar.textContent = 'Adicionar Imóvel';
     };
 
-    buscarProdutos();
+    buscarImoveis();
 });
 
   /*
