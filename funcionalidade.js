@@ -36,15 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     //UPDATE:
-    const atualizarImovel = async (id, produto) => {
+    const atualizarImovel = async (id, imovel) => {
         await fetch(`${url}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-            body: JSON.stringify(produto)
+            body: JSON.stringify(imovel)
         })
             .then(response => response.json())
-            .then(() => buscarProdutos())
-            .catch(() => alert("Erro ao atualizar produto!"));
+            .then(() => buscarImoveis())
+            .catch(() => alert("Erro ao atualizar imovel!"));
     };
 
     //DELETE    :
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="botao-de-acao botao-editar" data-id="${imovel.id}">✏️ Editar</button>
                 <button class="botao-de-acao botao-excluir" data-id="${imovel.id}">🗑️ Excluir</button>
               </td>`;
-            listaDeProdutos.appendChild(linha);
+            listaDeImoveis.appendChild(linha);
         });
     };
 
