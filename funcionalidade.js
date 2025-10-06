@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formularioDeImovel = document.getElementById('formulario-de-imovel');
     const campoIdDoImovel = document.getElementById('imovel-id');
     const botaoEnviar = document.getElementById('botao-enviar');
-    const listaDeImoveis = document.getElementById('lista-de-Imoveis');
+    const listaDeImoveis = document.getElementById('lista-de-imoveis');
 
     let imoveis = [];
 
