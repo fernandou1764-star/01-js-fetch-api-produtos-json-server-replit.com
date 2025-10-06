@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify(produto)
         })
             .then(response => response.json())
-            .then(() => apresentarTabela())
+            .then(() => buscarProdutos())
             .catch(() => alert("Erro ao enviar produto!"));
     };
 
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({ id, ...produto })
         })
             .then(response => response.json())
-            .then(() => apresentarTabela())
+            .then(() => buscarProdutos())
             .catch(() => alert("Erro ao atualizar produto!"));
     };
 
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'DELETE'
         })
             .then(response => response.json())
-            .then(() => apresentarTabela())
+            .then(() => buscarProdutos())
             .catch(() => alert("Erro ao excluir produto!"));
     };
 
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formularioDeProduto.addEventListener('submit', async event => {
         event.preventDefault();
 
-        const id = parseInt(campoIdDoProduto.value);
+        const id = campoIdDoProduto.value;
         const nome = document.getElementById('nome').value;
         const quantidade = parseInt(document.getElementById('quantidade').value);
         const preco = parseFloat(document.getElementById('preco').value);
@@ -104,12 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     listaDeProdutos.addEventListener('click', async event => {
         const alvo = event.target;
-        const id = parseInt(alvo.dataset.id);
+        const id = alvo.dataset.id;
 
         if (alvo.classList.contains('botao-editar')) {
             const produto = produtos.find(p => p.id === id);
 
             if (produto) {
+                campoIdDoProduto.value = produto.id;
                 document.getElementById('nome').value = produto.nome;
                 document.getElementById('quantidade').value = produto.quantidade;
                 document.getElementById('preco').value = produto.preco;
