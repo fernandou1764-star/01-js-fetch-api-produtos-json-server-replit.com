@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetch(`${url}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-            body: JSON.stringify({ id, ...produto })
+            body: JSON.stringify(produto)
         })
             .then(response => response.json())
             .then(() => buscarProdutos())
