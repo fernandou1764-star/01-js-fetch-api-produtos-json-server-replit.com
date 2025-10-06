@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error(error);
-                listaDeimoveis.innerHTML = `<tr><td colspan="4">Erro ao carregar imoveis.</td></tr>`;
+                listaDeImoveis.innerHTML = `<tr><td colspan="4">Erro ao carregar imoveis.</td></tr>`;
             })
     };
 
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     //UPDATE:
-    const atualizarProduto = async (id, produto) => {
+    const atualizarImovel = async (id, produto) => {
         await fetch(`${url}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json; charset=UTF-8' },
