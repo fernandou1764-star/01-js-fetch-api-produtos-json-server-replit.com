@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
               <td>${produto.quantidade}</td>
               <td>${formatarMoeda(produto.preco)}</td>
               <td>
-                <button class="botao-editar" data-id="${produto.id}">✏️ Editar</button>
-                <button class="botao-excluir" data-id="${produto.id}">🗑️ Excluir</button>
+                <button class="botao-de-acao botao-editar" data-id="${produto.id}">✏️ Editar</button>
+                <button class="botao-de-acao botao-excluir" data-id="${produto.id}">🗑️ Excluir</button>
               </td>`;
             listaDeProdutos.appendChild(linha);
         });
