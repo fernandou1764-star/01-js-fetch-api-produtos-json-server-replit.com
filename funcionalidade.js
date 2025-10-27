@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const replit = 'https://9de06e98-817d-455b-bdd2-c7b96eaf32a9-00-b2r6bwmmdprw.riker.replit.dev/'; // URL do projeto no Replit.com.
+    const replit = 'https://9de06e98-817d-455b-bdd2-c7b96eaf32a9-00-b2r6bwmmdprw.riker.replit.dev:3000/';
     const url = replit + "imoveis";
-
     const formularioDeImovel = document.getElementById('formulario-de-imovel');
     const campoIdDoImovel = document.getElementById('imovel-id');
     const botaoEnviar = document.getElementById('botao-enviar');
